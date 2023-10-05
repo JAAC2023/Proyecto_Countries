@@ -9,11 +9,11 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    difficulty: {
+    dificultad: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
         max: 5,
       },
     },
-    duration: {
+    duración: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -35,6 +35,11 @@ module.exports = (sequelize) => {
         },
       },
     },
+    Temporada: {
+      type: DataTypes.ENUM("Verano", "Otoño", "Invierno", "Primavera"),
+      allowNull: false,
+    },
   },
+
   { timestamps: false });
 };
