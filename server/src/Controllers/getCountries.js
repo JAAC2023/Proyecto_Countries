@@ -1,6 +1,6 @@
 const { Country } = require("../db");
 
-const getCountry = async (req, res) => {
+const getCountries = async (req, res) => {
   try {
   
     const respuesta = await Country.findAll();
@@ -11,4 +11,4 @@ const getCountry = async (req, res) => {
   }
 }
 
-module.exports = getCountry;
+module.exports = getCountries;

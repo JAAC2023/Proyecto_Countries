@@ -9,11 +9,11 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    nombre: {
+    Nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    dificultad: {
+    Dificultad: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
         max: 5,
       },
     },
-    duración: {
+    Duración: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {

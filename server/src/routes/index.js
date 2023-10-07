@@ -1,13 +1,20 @@
 const router = require('express').Router();
 
-const getCountry = require('../Controllers/getCountry');
-const saveApiCountry = require('../Controllers/saveApiCountry');
+const getCountries = require('../Controllers/getCountries');
+const getActivities = require('../Controllers/getActivities');
+const postCountries = require('../Controllers/postCountries');
 const getCountryById = require('../Controllers/getCountryById');
+const postActivityHandler = require('../Handlers/postActivityHandler');
 const getCountryByName = require('../Controllers/getCountryByName');
 
-router.get('/countries', getCountry);
+//___________________Contries_______________________
+router.post('/savecountry', postCountries);
+router.get('/countries', getCountries);
 router.get('/countries/name', getCountryByName);
 router.get('/countries/:id', getCountryById);
-router.post('/savecountry', saveApiCountry);
+
+//___________________Activities_____________________
+router.get('/activities', getActivities);
+router.post('/activities', postActivityHandler);
 
 module.exports = router;

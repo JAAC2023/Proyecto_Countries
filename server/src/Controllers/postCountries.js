@@ -1,12 +1,15 @@
 const { Country } = require("../db");
+
 const downloadCountry = require("./downloadCountry");
 
 
-const saveApiCountry = async (req, res) => {
+const postCountries = async (req, res) => {
+
   try {
   
     let data = await downloadCountry();
     const respuesta = await Country.bulkCreate(data);
+    
     res.json (respuesta);
 
   } catch (error) {
@@ -14,4 +17,4 @@ const saveApiCountry = async (req, res) => {
   }
 }
 
-module.exports = saveApiCountry;
+module.exports = postCountries;

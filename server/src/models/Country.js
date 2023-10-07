@@ -9,34 +9,34 @@ module.exports = (sequelize) => {
       allowNull: false, // Que no sea nulo
       primaryKey: true, // Clave primaria (unica)
     },
-    nombre: {
+    Nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    bandera: {
+    Bandera: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         isUrl: true,
       },
     },
-    continente: {
+    Continente: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    capital: {
+    Capital: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    subregion: {
+    Subregión: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    área: {
+    Area: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    población: {
+    Población: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

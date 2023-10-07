@@ -5,6 +5,6 @@ const { conn } = require('./src/db.js');
 const { PORT_SERVER } = process.env;
 
 server.listen(PORT_SERVER, async () => {
-  await conn.sync({ altern: true })
+  await conn.sync({ alter: true })
   console.log(`Server listening on port ${PORT_SERVER}`);
 });

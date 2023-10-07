@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Country } = require("../db");
+const { Country, Activity} = require("../db");
 
 const getCountryById = async (req, res) => {
 
@@ -8,7 +8,20 @@ const getCountryById = async (req, res) => {
 
     if(!id) return res.status(400).json({mensaje: "No hay información"})
   
-    const respuesta = await Country.findOne({ where: { id: { [Op.iLike]: id } } });
+    const respuesta = await Country.findOne({ 
+      where: { 
+        id: { 
+          [Op.iLike]: id 
+        } 
+      },   
+    }, {
+      include:{
+        model:Activity,
+        attributes:["Nombre"],
+        through:{
+          attributes:[]
+        },
+      }});
 
     if (!respuesta) return res.status(404).json({mensaje: "No se encontró ningún registro con la id proporcionada."})
 
