@@ -1,10 +1,8 @@
 require("dotenv").config();
 const axios = require ('axios');
-
 const { URL_API } = process.env;
 
 const downloadCountry = async (req, res) => {
-    
         try {
           const { data } = await axios.get(URL_API)
           if(data){
@@ -18,17 +16,14 @@ const downloadCountry = async (req, res) => {
               Subregión:   subregion  ? subregion        : "-",
               Area:        area       ? area             : 0,
               Población:   population ? population       : 0,
-              Actividades: []
             }
-          });
-          
+          })
           return mapeo;
-
           } else{
-            res.status(404).json({meesage: "No hay Datos"})
+            res.status(404).send("No hay información de paises")
           }
         } catch (error) {
-          res.status(500).json({meesage: "Algo salio mal con la petición"})
+          res.status(500).send("Error en la descarga de los paises")
         }
 
         

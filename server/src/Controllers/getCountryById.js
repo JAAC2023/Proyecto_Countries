@@ -5,30 +5,25 @@ const getCountryById = async (req, res) => {
 
   try {
     const { id } = req.params;
-
-    if(!id) return res.status(400).json({mensaje: "No hay información"})
-  
-    const respuesta = await Country.findOne({ 
+    if(!id) return res.status(400).send("Proporcionar el id de un país")
+    const country = await Country.findOne({ 
       where: { 
         id: { 
           [Op.iLike]: id 
         } 
       },   
-    }, {
       include:{
         model:Activity,
-        attributes:["Nombre"],
         through:{
           attributes:[]
         },
       }});
 
-    if (!respuesta) return res.status(404).json({mensaje: "No se encontró ningún registro con la id proporcionada."})
-
-    res.json (respuesta);
+    if (country) res.status(200).json (country);
+    res.status(404).send("No se encontró ningún registro con la id proporcionada");
 
   } catch (error) {
-    res.json({mensaje: "Error en la extracción de datos de la base de datos"});
+    res.json({mensaje: "Error en la extracción de información de la base de datos"});
   }
 }
 

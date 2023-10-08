@@ -2,7 +2,6 @@ const { Activity, Country } = require("../db");
 
 const getActivities = async (req, res) => {
   try {
-  
     const activities = await Activity.findAll({
       include:{
         model:Country,
@@ -11,11 +10,11 @@ const getActivities = async (req, res) => {
           attributes:[]
         },
       }});
-    res.json (activities);
+    res.status(200).json(activities);
 
   } catch (error) {
-    res.json({mensaje: "Error en la extracción de datos de la base de datos"});
-  }
+    res.status(500).send("No se encontro ninguna actividad, por favor ingrese una")
+  };
 }
 
 module.exports = getActivities;

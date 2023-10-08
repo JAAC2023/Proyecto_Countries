@@ -23,17 +23,8 @@ module.exports = (sequelize) => {
       },
     },
     Duración: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isInt: {
-          msg: "La duración debe ser un número entero en horas.",
-        },
-        min: {
-          args: 1,
-          msg: "La duración mínima debe ser 1 hora.",
-        },
-      },
     },
     Temporada: {
       type: DataTypes.ENUM("Verano", "Otoño", "Invierno", "Primavera"),
