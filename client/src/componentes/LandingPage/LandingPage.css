@@ -1,0 +1,66 @@
+@font-face {
+  font-family: amatic;
+  src: url('../Material_Multimedia/AmaticSC-Regular.ttf');
+}
+
+.landing_pague {
+  background-image: url(../Material_Multimedia/FondoLanding.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+  height: 100vh;
+  overflow: hidden;
+  margin: -1ch;
+}
+
+.Titulo {
+  font-family: amatic;
+  color: blue;
+  position: absolute;
+  top: 20px;
+  left: 394px;
+  font-size: 165px;
+}
+
+.boton {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: -.24px;
+  margin: 0;
+  outline: none;
+  padding: 1px 5rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  touch-action: manipulation;
+  font-family: amatic;
+  color: blue;
+  position: absolute;
+  top: 370px;
+  left: 560px;
+  font-size: 100px;
+}
+
+.boton:hover {
+  background-color: #FFC229;
+  box-shadow: #FF6314 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.boton:active {
+  transform: scale(1.025);
+}
+
+.simbolo{
+  margin: -18%;
+  width: 130px;
+}

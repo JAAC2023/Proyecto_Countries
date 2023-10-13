@@ -3,7 +3,7 @@ const downloadCountry = require("./downloadCountry");
 
 const loadCountriesDB = async (req, res) => {
   try {
-    if (!await Country.findAll({ where: { id: ""} })) {
+    if (!await Country.findOne({ where: { id: "KEN"} })) {
       let data = await downloadCountry();
     const countries = await Country.bulkCreate(data);
     return countries;
