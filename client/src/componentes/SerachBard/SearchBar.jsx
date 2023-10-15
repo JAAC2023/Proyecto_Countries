@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import './SearchBar.css'
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearchNombre }) {
 
    const [pais, setPais] = useState({nombre: "" });
 
-   const [aux, setAux] = useState([]);
+   //const [aux, setAux] = useState([]);
 
    const handleChange = (event) =>{
     const { value } = event.target;
-      setPais({...pais, value});
+      setPais({nombre: value});
    }
 
   //  const repetido = () => {
@@ -33,7 +33,7 @@ export default function SearchBar({ onSearch }) {
          onChange={handleChange}
          className=""
          /*value={pais.nombre}*//>
-         <button className="" onClick={() => onSearch(pais)}>Buscar</button>
+         <button className="" onClick={() => onSearchNombre(pais)}>Buscar</button>
       </div>
    );
 }
