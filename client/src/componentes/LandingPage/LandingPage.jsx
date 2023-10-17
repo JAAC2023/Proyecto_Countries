@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./LandingPage.css";
-import simbol from "../../../Material_Multimedia/Play.jpg"
+import simbol from "../../../Material/Play.jpg"
 
 export default function LandingPage({ inicio }) {
 

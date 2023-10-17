@@ -20,17 +20,19 @@ function App() {
   }
 
   const onSearchNombre = async (pais) => {
-    //try {
+    try {
       const URL = "http://localhost:5173/countries/name";
       
-      const { data } = await axios.get(`${URL}?nombre=${pais.nombre}`);
-
-      console.log(data)
+      console.log(pais.nombre)
+      
+      //const { data } = await axios.get(`${URL}?nombre=${pais.nombre}`);
+      const { data } = await axios.get("http://localhost:5173/countries/name" + pais.nombre);
 
       if (data) setPaises([...paises, data]);
-    //} catch (error) {
-      // window.alert ("No existe País");
-    //}
+    } catch (error) {
+      console.log(error.message);
+       //window.alert ("No existe País");
+    }
  }
 
 //  const onSearch = async (pais) => {

@@ -1,10 +1,10 @@
 @font-face {
   font-family: amatic;
-  src: url('../Material_Multimedia/AmaticSC-Regular.ttf');
+  src: url('../Material/AmaticSC-Regular.ttf');
 }
 
 .landing_pague {
-  background-image: url(../Material_Multimedia/FondoLanding.jpg);
+  background-image: url(../Material/FondoLanding.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size:cover;

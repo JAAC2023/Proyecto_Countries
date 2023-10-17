@@ -9,10 +9,25 @@ export default function SearchBar({ onSearchNombre }) {
 
    const handleChange = (event) =>{
     const { value } = event.target;
-      setPais({nombre: value});
+    setPais({nombre: value});
+    console.log(pais);
    }
+  
+   return (
+      <div>
+         <input 
+         type="text" 
+         onChange={handleChange}
+         className=""
+         value={pais.nombre} />
+         <button className="" onClick={async() => await onSearchNombre(pais)}>Buscar</button>
+      </div>
+   );
+}
 
-  //  const repetido = () => {
+
+
+//  const repetido = () => {
   //     if (pais.nombre){
   //        setAux([...aux, pais.nombre])
   //        if (!aux.includes(pais.nombre)) {
@@ -25,15 +40,3 @@ export default function SearchBar({ onSearchNombre }) {
   //     }
   //     setPais('')
   //  }
-
-   return (
-      <div>
-         <input 
-         type="text" 
-         onChange={handleChange}
-         className=""
-         /*value={pais.nombre}*//>
-         <button className="" onClick={() => onSearchNombre(pais)}>Buscar</button>
-      </div>
-   );
-}
