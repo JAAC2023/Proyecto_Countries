@@ -1,60 +1,55 @@
+import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "./App.css";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import LandingPage from "./componentes/LandingPage/LandingPage.jsx";
-import SearchBar from "./componentes/SerachBard/SearchBar";
-import Cards from "./componentes/Cards/Cards";
+import SearchBar from "./componentes/SerachBard/SearchBar.jsx";
+import Cards from "./componentes/Cards/Cards.jsx";
+import Detail from "./componentes/Detail/Detail";
+import { useSelector } from "react-redux";
+import { addCountryName } from "./Redux/action"
+
 
 
 function App() {
 
   const navigate = useNavigate()
+  const location = useLocation();
   const [ paises, setPaises ] = useState([])
   const [ ingreso, setIngreso ] = useState(false)
-  
+  const paisPorNombre = useSelector((state) => state.paisPorNombre);
 
   const entrada = () => {
     setIngreso(true);
-    return ingreso && navigate("countries/name");
+    return ingreso && navigate("home");
   }
 
-  const onSearchNombre = async (pais) => {
+  const onSearchName = async (pais) => {
     try {
-      const URL = "http://localhost:5173/countries/name";
-      
-      console.log(pais.nombre)
-      
-      //const { data } = await axios.get(`${URL}?nombre=${pais.nombre}`);
-      const { data } = await axios.get("http://localhost:5173/countries/name" + pais.nombre);
-
-      if (data) setPaises([...paises, data]);
+      await addCountryName(pais)
     } catch (error) {
-      console.log(error.message);
-       //window.alert ("No existe País");
+       window.alert ("No existe este país");
     }
  }
 
-//  const onSearch = async (pais) => {
-//   try {
-//     const URL = "http://localhost:5173/countries";
-//      const { data } = await axios(`${URL}?nombre=${pais.nombre}`);
-//      console.log(data);
-//         if (data){
-//            setPaises([...paises, data]);
-//         } 
-//   } catch (error) {
-//      window.alert ("No existe País");
-//   }
-// }
+ function onClose(id) {
+  const filtro = paises.filter((pais) => pais.id !== id);
+  setPaises(filtro);
+}
+
+function back() {
+  return navigate("home");
+}
 
   return (
   <div className="app">
+
+  {location.pathname !== "/" && <SearchBar onSearchName={onSearchName} />}
     
     <Routes>
       <Route path="/" element={<LandingPage inicio={entrada}/>} />
-      <Route path="/countries/name" element={<SearchBar onSearchNombre={onSearchNombre} />} />
-      <Route path="/countries/name" element={<Cards paises={paises} />} />
+      <Route path="/home" element={<Cards paisPorNombre={paisPorNombre} onClose={onClose} />} />
+      <Route path="/detail/:id" element={<Detail back={back} />} />
     </Routes>
   </div>)
 }

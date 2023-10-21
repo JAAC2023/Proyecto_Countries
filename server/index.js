@@ -6,6 +6,6 @@ const loadCountriesDB = require("./src/Controllers/loadCountriesDB");
 
 server.listen(PORT_SERVER, async () => {
   await conn.sync({ altern: true });
-  console.log(`Server listening on port ${PORT_SERVER}`);
+  console.log(`Servidor escuchando en el puerto ${PORT_SERVER}`);
   loadCountriesDB();
 });

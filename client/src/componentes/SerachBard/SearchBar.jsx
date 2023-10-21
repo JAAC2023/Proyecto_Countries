@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import './SearchBar.css'
 
-export default function SearchBar({ onSearchNombre }) {
+export default function SearchBar({ onSearchName }) {
 
    const [pais, setPais] = useState({nombre: "" });
 
    //const [aux, setAux] = useState([]);
 
    const handleChange = (event) =>{
-    const { value } = event.target;
-    setPais({nombre: value});
-    console.log(pais);
+    setPais({nombre: event.target.value});
    }
   
    return (
@@ -20,7 +18,7 @@ export default function SearchBar({ onSearchNombre }) {
          onChange={handleChange}
          className=""
          value={pais.nombre} />
-         <button className="" onClick={async() => await onSearchNombre(pais)}>Buscar</button>
+         <button className="" onClick={async () => await onSearchName(pais)}>Buscar</button>
       </div>
    );
 }

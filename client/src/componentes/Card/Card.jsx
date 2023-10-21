@@ -1,41 +1,28 @@
 import "./Card.css"
-//import { NavLink, useLocation } from "react-router-dom";
-//import { useDispatch } from "react-redux";
-//import { useState } from "react"; //React.useState
-//import { addFav, removeFav } from "../../Redux/action";
+import { NavLink } from "react-router-dom";
 
-function Card({ id, Nombre, Bandera, Continente, Capital, Subregión, Area, Población }) {
+function Card({ id, Nombre, Bandera, Continente, Capital, Subregión, Area, Población, onClose }) {
 
-   //const [isFav, setIsFav] = useState(false);
-   //const location = useLocation();
-   //const dispatch = useDispatch();
-   //const removeFavorite = (id) => dispatch(removeFav(id));
-   //const addFavorite = (character) => dispatch(addFav(character));
-
-  //  const handleFavorite = () => {
-  //     if (isFav) {
-  //        removeFavorite(id);
-  //        setIsFav(false);
-  //     } else {
-  //        addFavorite({ id, name, image, gender, status, species, origin, });
-  //        setIsFav(true);
-         
-  //     }
-  //  };
-
+  if (!id) {
+    return(
+      <div>...Cargando</div>
+      )
+  }
+  
    return (
       <div id={id}>
 
+         <button onClick={()=>onClose(id)}>X</button>
          <h1 >{id}</h1>
          <h1 >{Nombre}</h1>
          <h1>{Continente}</h1>
-         
-         {/* <NavLink to={`/detail/${id}`}> */}
+         <NavLink to={`/detail/${id}`}>
             <img src={Bandera} alt="" className=""/>
-         {/* </NavLink> */}
+         </NavLink>   
          
       </div>
    );
 }
 
 export default Card;
+
