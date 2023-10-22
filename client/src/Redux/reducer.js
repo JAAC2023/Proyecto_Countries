@@ -1,4 +1,4 @@
-import { ADD_COUNTRY_NAME } from "./actionType"
+import { ADD_COUNTRY_NAME, REMOVE_COUNTRY } from "./actionType"
 
 const initialState = {
   paisPorNombre: [],
@@ -7,9 +7,14 @@ const initialState = {
 const reducer = (state=initialState, {type, payload}) => {
     switch (type) {
         case ADD_COUNTRY_NAME:
-            return { ...state, 
-                paisPorNombre: payload, 
-            };
+          return { ...state, 
+              paisPorNombre: [...state.paisPorNombre, payload ] 
+          };
+
+        case REMOVE_COUNTRY:
+          return { ...state, 
+            paisPorNombre: state.paisPorNombre.filter((pais) => pais.id !== payload) 
+          };
     
         default:
             return {...state}

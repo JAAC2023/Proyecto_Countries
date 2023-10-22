@@ -1,13 +1,13 @@
 import "./Cards.css"
 import Card from "../Card/Card";
 
-export default function Cards({ paises, onClose }) {
+export default function Cards({ paisPorNombre, onClose }) {
 
    return (
       <div>
          <h1 className="">HOME</h1>
          
-         {paises?.map(({ id, Nombre, Bandera, Continente, Capital, Subregión, Area, Población }) => (
+         {paisPorNombre?.map(({ id, Nombre, Bandera, Continente, Capital, Subregión, Area, Población }) => (
          <Card
             key={id}
             id={id}
@@ -22,5 +22,5 @@ export default function Cards({ paises, onClose }) {
          />
          ))}
       </div>
-   );
+   )
 }

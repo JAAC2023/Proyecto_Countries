@@ -2,44 +2,37 @@ import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import LandingPage from "./componentes/LandingPage/LandingPage.jsx";
 import SearchBar from "./componentes/SerachBard/SearchBar.jsx";
 import Cards from "./componentes/Cards/Cards.jsx";
 import Detail from "./componentes/Detail/Detail";
-import { useSelector } from "react-redux";
-import { addCountryName } from "./Redux/action"
+import { addCountryName, removeCountry } from "./Redux/action"
 
 
 
 function App() {
 
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation();
+  const [ aux, setAux] = useState(false);
   const [ paises, setPaises ] = useState([])
-  const [ ingreso, setIngreso ] = useState(false)
+  const [ ingreso, setIngreso ] = useState(false);
   const paisPorNombre = useSelector((state) => state.paisPorNombre);
 
   const entrada = () => {
     setIngreso(true);
     return ingreso && navigate("home");
   }
+  
+  const onSearchName = (pais) => {
+    dispatch(addCountryName(pais));
+  }
 
-  const onSearchName = async (pais) => {
-    try {
-      await addCountryName(pais)
-    } catch (error) {
-       window.alert ("No existe este país");
-    }
- }
-
- function onClose(id) {
-  const filtro = paises.filter((pais) => pais.id !== id);
-  setPaises(filtro);
-}
-
-function back() {
-  return navigate("home");
-}
+ function onClose (id) {
+  dispatch(removeCountry(id))
+  }
 
   return (
   <div className="app">
@@ -49,7 +42,7 @@ function back() {
     <Routes>
       <Route path="/" element={<LandingPage inicio={entrada}/>} />
       <Route path="/home" element={<Cards paisPorNombre={paisPorNombre} onClose={onClose} />} />
-      <Route path="/detail/:id" element={<Detail back={back} />} />
+      <Route path="/detail/:id" element={<Detail />} />
     </Routes>
   </div>)
 }

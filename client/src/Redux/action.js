@@ -1,9 +1,9 @@
 import axios from "axios";
-import { ADD_COUNTRY_NAME } from "./actionType";
+import { ADD_COUNTRY_NAME, REMOVE_COUNTRY } from "./actionType";
 
 const URL = 'http://localhost:3001/app/countries/name';
 
-const addCountryName = (pais) => {
+export const addCountryName = (pais) => {
     return async (dispatch) => {
       try {
         const { data } = await axios.get(URL + `?nombre=${pais.nombre}`);
@@ -16,6 +16,8 @@ const addCountryName = (pais) => {
     };
 };
 
-export default {
-  addCountryName
+export const removeCountry = (id) => {
+  return (dispatch) => {
+    return dispatch({type: REMOVE_COUNTRY, payload: id});
+  };
 };
