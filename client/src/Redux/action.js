@@ -1,9 +1,9 @@
 import axios from "axios";
-import { ADD_COUNTRY_NAME, REMOVE_COUNTRY } from "./actionType";
+import { ADD_COUNTRY_NAME, REMOVE_COUNTRY, ADD_COUNTRY} from "./actionType";
 
-const URL = 'http://localhost:3001/app/countries/name';
 
 export const addCountryName = (pais) => {
+  const URL = 'http://localhost:3001/app/countries/name';
     return async (dispatch) => {
       try {
         const { data } = await axios.get(URL + `?nombre=${pais.nombre}`);
@@ -19,5 +19,18 @@ export const addCountryName = (pais) => {
 export const removeCountry = (id) => {
   return (dispatch) => {
     return dispatch({type: REMOVE_COUNTRY, payload: id});
+  };
+};
+
+export const addCountry = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get('http://localhost:3001/app/countries');
+      if (data) {
+      return dispatch ({type: ADD_COUNTRY, payload: data});
+      }
+    } catch (error) {
+      window.alert (error.message);
+    }
   };
 };

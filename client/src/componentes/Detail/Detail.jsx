@@ -41,6 +41,5 @@ export default function Detail() {
         </div>
         <img className="" src= {pais?.Bandera} alt= "Not Found" />    
       </div>
-    )
-    
+    )   
 }
