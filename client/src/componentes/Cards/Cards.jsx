@@ -4,8 +4,7 @@ import Card from "../Card/Card";
 export default function Cards({ todosLosPaises }) {
 
    return (
-      <div>
-         
+      <div className="cards">
          {todosLosPaises?.map((pais) => (
          <Card
             key={pais.id}

@@ -22,7 +22,7 @@ export default function Detail() {
       <div className="detail">
         <h1 className="">DETAIL</h1>
         <div className="">
-          <NavLink to="/home/">
+          <NavLink to="/home">
             <button>Atrás</button>
           </NavLink>
           <h2 >Id........{pais?.id}</h2>

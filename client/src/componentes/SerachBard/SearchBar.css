@@ -1,0 +1,9 @@
+.searchBar{
+  position: relative;
+  margin: 0% 0% -5% 0%;
+  overflow: auto;
+}
+
+.home{
+  position: relative;
+}
