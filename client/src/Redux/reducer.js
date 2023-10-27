@@ -2,6 +2,7 @@ import { ADD_COUNTRY_NAME, REMOVE_COUNTRY, ADD_COUNTRY, ORDER_ABC, ORDER_POB, FI
 
 const initialState = {
   todosLosPaises: [],
+  paisesOrdenados:[],
   paisPorNombre: [],
 }
 
@@ -9,47 +10,51 @@ const reducer = (state=initialState, {type, payload}) => {
     switch (type) {
         case ADD_COUNTRY_NAME:
           return { ...state, 
-              paisPorNombre: [...state.paisPorNombre, payload ] 
+            paisPorNombre: [...state.paisPorNombre, payload ],
           };
 
         case REMOVE_COUNTRY:
           return { ...state, 
-            paisPorNombre: state.paisPorNombre.filter((pais) => pais.id !== payload) 
+            paisPorNombre: state.paisPorNombre.filter((pais) => pais.id !== payload),
           };
 
           case ADD_COUNTRY:
           return { ...state, 
-              todosLosPaises: [...payload ] 
+            todosLosPaises: [...payload ],
+            paisesOrdenados: [...payload ],
           };
 
           case ORDER_ABC:
-        let ordenABC = state.todosLosPaises.sort((a, b) => {
-          return payload === "A" ? a.Nombre.localeCompare(b.Nombre) : b.Nombre.localeCompare(a.Nombre);
-        });
-            return{
+            let ordenABC = state.paisesOrdenados.sort((a, b) => {
+              if (payload === "A-Z") return a.Nombre.localeCompare(b.Nombre);
+              if (payload === "Z-A") return b.Nombre.localeCompare(a.Nombre);
+              
+            });
+              return{...state,
                 todosLosPaises: ordenABC,
                 paisPorNombre: ordenABC,
-            }
+              };
+            
+        //     case ORDER_POB:
+        // let ordenPOB = state.paises.sort((a, b) => {
+        //   if (payload === "A") return a.Población - b.Población;
+        //   if (payload === "D") return b.Población - a.Población;
+        // });
+        //     return{
+        //       ...state,
+        //         todosLosPaises: ordenPOB,
+        //         paisPorNombre: ordenPOB,
+        //     }
 
-            case ORDER_POB:
-        let ordenPOB = state.todosLosPaises.sort((a, b) => {
-          return payload === "A" ? a.Población - b.Población : b.Población - a.Población;
-        });
-            return{
-              ...state,
-                todosLosPaises: ordenPOB,
-                paisPorNombre: ordenPOB,
-            }
-
-            case FILTER_CONTI:
-        let filterCont = payload === "Ordenar" ? state.todosLosPaises :
-        state.todosLosPaises.filter(pais => pais.Continente === payload)
+        //     case FILTER_CONTI:
+        // let filterCont = payload === "Ordenar" ? state.paises :
+        // state.todosLosPaises.filter(pais => pais.Continente === payload)
           
-            return{
-              ...state,
-                todosLosPaises: filterCont,
-                paisPorNombre: filterCont,
-            }
+        //     return{
+        //       ...state,
+        //         todosLosPaises: filterCont,
+        //         //paisPorNombre: filterCont,
+        //     }
     
         default:
             return {...state}

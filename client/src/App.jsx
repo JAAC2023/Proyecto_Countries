@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addCountry, addCountryName, removeCountry } from "./Redux/action";
@@ -9,6 +9,7 @@ import Cards from "./componentes/Cards/Cards.jsx";
 import SearchBar from "./componentes/SerachBard/SearchBar.jsx";
 import LandingPage from "./componentes/LandingPage/LandingPage.jsx";
 import CardsForName from "./componentes/CardsForName/CardsForName.jsx";
+import reducer from "./Redux/reducer"
 
 
 
@@ -17,9 +18,14 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const [aux, setAux] = useState(false)
   const [ ingreso, setIngreso ] = useState(false);
   const paisPorNombre = useSelector((state) => state.paisPorNombre);
   const todosLosPaises = useSelector((state) => state.todosLosPaises);
+
+  useEffect(()=> {setAux(!aux)}, [reducer])
+  
+  console.log(aux);
  
   const entrada = () => {
     setIngreso(true);

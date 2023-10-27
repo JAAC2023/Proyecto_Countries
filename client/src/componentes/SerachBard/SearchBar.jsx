@@ -24,11 +24,12 @@ export default function SearchBar({ onSearch, onSearchName }) {
 
   const handleOrderPob = (event) => {
     dispatch(orderPOB(event.target.value));
+    setAux(!aux)
   };
 
   const handlerFilterConti = (event) => {
     dispatch(filterConti(event.target.value));
-    setAux(!aux)
+    
   };
   
    return (
@@ -47,8 +48,8 @@ export default function SearchBar({ onSearch, onSearchName }) {
       </NavLink>
       <select className="" onChange={handleOrderABC}>
         <option className="" value="">Ordenar</option>
-        <option className="" value="A">A ⬆ Z</option>
-        <option className="" value="D">Z ⬇ A</option>
+        <option className="" value="A-Z">A ⬆ Z</option>
+        <option className="" value="Z-A">Z ⬇ A</option>
       </select>
       <select className="" onChange={handlerFilterConti}>
         {continentes.map((option) => (
@@ -59,8 +60,8 @@ export default function SearchBar({ onSearch, onSearchName }) {
       </select>
       <select className="" onChange={handleOrderPob}>
         <option className="" value="">Ordenar</option>
-        <option className="" value="A">+</option>
-        <option className="" value="D">-</option>
+        <option className="" value="A">Ascendente</option>
+        <option className="" value="D">Descendente</option>
       </select>
     </div>
   );
