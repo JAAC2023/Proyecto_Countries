@@ -14,13 +14,13 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     Dificultad: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isInt: true,
-        min: 1,
-        max: 5,
-      },
+      // validate: {
+      //   isInt: true,
+      //   min: 1,
+      //   max: 5,
+      // },
     },
     Duración: {
       type: DataTypes.STRING,

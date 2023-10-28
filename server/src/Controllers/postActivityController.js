@@ -1,8 +1,8 @@
 const { Activity } = require("../db.js")
 
-const postActivityController = async ({ id, Nombre, Dificultad, Duración, Temporada, Paises, status, send }) => {
+const postActivityController = async ({ Nombre, Dificultad, Duración, Temporada, Paises, status, send }) => {
   try {
-    const activities = await Activity.create({id, Nombre, Dificultad, Duración, Temporada});
+    const activities = await Activity.create({Nombre, Dificultad, Duración, Temporada});
     activities.addCountries(Paises)
     return activities;
   } catch (error) {

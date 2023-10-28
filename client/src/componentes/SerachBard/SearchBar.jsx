@@ -63,6 +63,9 @@ export default function SearchBar({ onSearch, onSearchName }) {
         <option className="" value="A">Ascendente</option>
         <option className="" value="D">Descendente</option>
       </select>
+      <NavLink to={'/activity'}>
+        <button className="" >CREAR ACTIVIDAD</button>
+      </NavLink>
     </div>
-  );
+    )
 }
