@@ -1,23 +1,32 @@
-// export default function validation({ email, password }) {
-//   // input -> {email:"d", password:""}
-//   let error = {};
-//   let regexEmail = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
-//   let passwordArray = password.split(""); 
+export default function validation({ Nombre, Duración, Dificultad,Temporada, Paises }) {
 
-//   const hayNumeroDel0Al9 = passwordArray.some((elemento) => {
-//       const numero = Number(elemento);
-//       return numero >= 0 && numero <= 9;
-//       });
+  let error = {};
+  let regexUnaPalabra = /^(?!.*(\w)\1)[A-Za-z]*$/;
+  let regexVariasPalabras = /^(?!.*(\w+)\s\1)([A-Za-z]+\s[A-Za-z]+(\s[A-Za-z]+)?)$/;
+  let duracionArray = Duración.split(""); 
+
+  const hayNumeroDel0Al9 = duracionArray.some((elemento) => {
+    const numero = Number(elemento);
+    return numero >= 0 && numero <= 9;
+  });
   
-//   if (!regexEmail.test(email)) error.email = "Debe ser un email valido";
-//   else error.email = "Correcto ✔";
+  if (regexUnaPalabra.test(Nombre) || regexVariasPalabras.test(Nombre)) error.Nombre = "Bien ✔";
+  else error.Nombre = "Debe ser un nombre valido";
 
-//   if (!email)error.email = "Este campo no puede estar vacio";
+  if (!Nombre) error.Nombre = "Este campo no puede estar vacio";
+  if (!Duración) error.Duración = "Este campo no puede estar vacio";
+  if (!Dificultad) error.Dificultad = "Este campo no puede estar vacio";
+  else error.Dificultad = "Bien ✔"
+  if (!Temporada) error.Temporada = "Este campo no puede estar vacio";
+  else error.Temporada = "Bien ✔"
+  if (Paises.length === 0) error.Paises = "Debe seleccionar por lo menos un país";
+  else error.Paises = "Bien ✔"
+  if (Nombre.length > 30) error.Nombre = "Debe tener menos de 30 caracteres";
 
-//   if (email.length > 35) error.email = "Debe tener menos de 35 caracteres";
-
-//   if (password.length < 6 || password.length > 10) error.password = "Debe tener una longitud entre 6 y 10 caracteres";
-//   else if (hayNumeroDel0Al9) error.password = "Correcto ✔";
-//           else error.password = "Debe contener al menos un numero";
+  if (Duración > 50) error.Duración = "No debería superar las 50 horas";
+  else if (Duración < 5) error.Duración = "La actividad debe ser de mínimo 5 horas";
+  else if (hayNumeroDel0Al9) error.Duración = "Bien ✔";
+          else error.Duración = "Debe contener al menos un numero";
       
-//   return error;
+  return error
+};

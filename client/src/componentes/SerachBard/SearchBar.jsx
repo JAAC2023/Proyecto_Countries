@@ -4,7 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { filterConti, orderABC, orderPOB, } from '../../Redux/action';
 
-export default function SearchBar({ onSearch, onSearchName }) {
+export default function SearchBar({ onSearch, onSearchName, searchAvtivities}) {
   
   const location = useLocation();
   const continentes = ["Ordenar", "Africa", "Europe", "Oceania", "Asia", "North America", "South America"];
@@ -45,7 +45,11 @@ export default function SearchBar({ onSearch, onSearchName }) {
     <NavLink to={'/activity'}>
         <button className="" >Crear Actividad</button>
     </NavLink>
-         
+
+    <NavLink to={'/activity/list'}>
+      <button className="" onClick={() => searchAvtivities()}>Lista de Actividades</button>
+    </NavLink>
+
     <input 
       type="text" 
       onChange={handleChange}
@@ -57,8 +61,7 @@ export default function SearchBar({ onSearch, onSearchName }) {
 
       <NavLink to={'/home/name'}>
       <button className="home">Lista de Busqueda</button>
-      </NavLink> 
-
+      </NavLink>
       <p></p>
 
       <select className="" onChange={handleOrderABC}>

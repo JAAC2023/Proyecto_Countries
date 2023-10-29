@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_COUNTRY_NAME, REMOVE_COUNTRY, ADD_COUNTRY, ORDER_ABC, ORDER_POB, FILTER_CONTI } from "./actionType";
+import { ADD_COUNTRY_NAME, REMOVE_COUNTRY, ADD_COUNTRY, ORDER_ABC, ORDER_POB, FILTER_CONTI, ADD_ACTIVITY } from "./actionType";
 
 export const addCountry = () => {
   return async (dispatch) => {
@@ -45,3 +45,16 @@ export const orderPOB = (order) => {
 export const filterConti = (filter) => {
   return {type: FILTER_CONTI, payload: filter}
 }
+
+export const addActivity = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get('http://localhost:3001/app/activities');
+      if (data) {
+      return dispatch ({type: ADD_ACTIVITY, payload: data});
+      }
+    } catch (error) {
+      window.alert (error.message);
+    }
+  };
+};

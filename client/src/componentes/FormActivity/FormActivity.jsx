@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import validation from "../../utils/valditations";
 
 const FormActivity = ({ postActivity }) => {
 
-  const temporada = ["...", "Verano", "Otoño", "Invierno", "Primavera"]
-  const dificultad = ["...",1, ,2 ,3 ,4 ,5]
+  const temporada = ["", "Verano", "Otoño", "Invierno", "Primavera"]
+  const dificultad = ["",1, ,2 ,3 ,4 ,5]
 
   const [activity, setActivity] = useState({
     Nombre: "",
@@ -14,6 +15,8 @@ const FormActivity = ({ postActivity }) => {
 		Temporada: "",
 		Paises: []
   });
+
+  const [errores, setErrores] = useState({});
 
   const [multPaises, setMultPaises] = useState([]);
   const [tempo, setTempo] = useState("");
@@ -26,30 +29,38 @@ const FormActivity = ({ postActivity }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setActivity({ ...activity, [name]: value });
+    setErrores(validation({ ...activity, [name]: value }));
   };
 
   const handleChangeTemporada = (event) => {
     setTempo(event.target.value)
     setActivity({ ...activity, Temporada: event.target.value });
+    setErrores(validation({ ...activity, Temporada: event.target.value }));
   }
+
   const handleChangeDificultad = (event) => {
     setDifil(event.target.value)
     setActivity({ ...activity, Dificultad: event.target.value });
+    setErrores(validation({ ...activity, Dificultad: event.target.value }));
   }
 
   const handleSelectChangePais = (event) => {
     setMultPaises([...multPaises, event.target.value]);
     const push = activity.Paises.push(event.target.value);
     setActivity({ ...activity, push });
+    setErrores(validation({ ...activity, push }));
   }
   const limpiarPaises = () => {
     setMultPaises([])
-    setActivity([])
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
     postActivity(activity)
+  }
+
+  const registroExitoso = () => {
+    window.alert("Registro exitoso")
   }
   
   return (
@@ -58,7 +69,7 @@ const FormActivity = ({ postActivity }) => {
         <button className="home">HOME</button>
       </NavLink>
       <div>
-        <label className="">Nombre</label>
+        <label className="">Nombre: </label>
         <input
           className=""
           type="text"
@@ -66,10 +77,12 @@ const FormActivity = ({ postActivity }) => {
           value={activity.Nombre}
           name="Nombre"
         />
+        <label >... {activity.Nombre}</label>
+        {errores.Nombre ? <p>{errores.Nombre}</p>:<p>...</p>}
 
         <p> </p>
 
-        <label className="">Dificultad</label>
+        <label className="">Dificultad: </label>
         <select className="" onChange={handleChangeDificultad}>
         {dificultad.map((opcion) => (
           <option 
@@ -80,11 +93,12 @@ const FormActivity = ({ postActivity }) => {
           </option>
         ))}
         </select>
-        <label>{difil}</label>
+        <label>... {difil}</label>
+        {errores.Dificultad ? <p>{errores.Dificultad}</p>:<p>...</p>}
 
         <p> </p>
 
-        <label className="">Duración</label>
+        <label className="">Duración: </label>
         <input
           className=""
           type="number"
@@ -92,11 +106,12 @@ const FormActivity = ({ postActivity }) => {
           value={activity.Duración}
           name="Duración"
         />
-        <label >Horas</label>
+        <label >... {activity.Duración} Horas</label>
+        {errores.Duración ? <p>{errores.Duración}</p>:<p>...</p>}
 
         <p></p>
      
-        <label className="">Temporada</label>
+        <label className="">Temporada: </label>
         <select className="" onChange={handleChangeTemporada}>
         {temporada.map((opcion) => (
           <option 
@@ -107,11 +122,12 @@ const FormActivity = ({ postActivity }) => {
           </option>
         ))}
         </select>
-        <label>{tempo}</label>
+        <label>... {tempo}</label>
+        {errores.Temporada ? <p>{errores.Temporada}</p>:<p>...</p>}
 
         <p> </p>
 
-        <label className="">Pais</label>
+        <label className="">Pais: </label>
         <select multiple={true} className="" onChange={handleSelectChangePais} >
         {paises?.map(({Nombre, id}) => (
           <option 
@@ -122,12 +138,20 @@ const FormActivity = ({ postActivity }) => {
           </option>
         ))}
         </select>
+        {errores.Paises ? <p>{errores.Paises}</p>:<p>...</p>}
         <p>Seleccionados: {multPaises.join(", ")}</p>
         <button onClick={()=>limpiarPaises()}>Limpiar</button>
       </div>
 
       <div>
-        <button type="sbmit" >ENVIAR</button>
+        {errores.Paises === "Bien ✔" && 
+        errores.Temporada === "Bien ✔" && 
+        errores.Duración === "Bien ✔" &&
+        errores.Dificultad === "Bien ✔" && 
+        errores.Nombre === "Bien ✔" ? 
+        <button type="submit" onClick={() => registroExitoso()}>ENVIAR</button> : 
+        <button type="submit" disabled="true" >ENVIAR</button>}
+        
       </div>
     </form>
     

@@ -1,30 +1,31 @@
-import { ADD_COUNTRY_NAME, REMOVE_COUNTRY, ADD_COUNTRY, ORDER_ABC, ORDER_POB, FILTER_CONTI } from "./actionType"
+import { ADD_COUNTRY_NAME, REMOVE_COUNTRY, ADD_COUNTRY, ORDER_ABC, ORDER_POB, FILTER_CONTI, ADD_ACTIVITY } from "./actionType"
 
 const initialState = {
   todosLosPaises: [],
   paisesOrdenados:[],
   paisPorNombre: [],
+  actividades:[],
 }
 
 const reducer = (state=initialState, {type, payload}) => {
     switch (type) {
-        case ADD_COUNTRY_NAME:
+      case ADD_COUNTRY_NAME:
           return { ...state, 
             paisPorNombre: [...state.paisPorNombre, payload ],
           };
 
-        case REMOVE_COUNTRY:
+      case REMOVE_COUNTRY:
           return { ...state, 
             paisPorNombre: state.paisPorNombre.filter((pais) => pais.id !== payload),
           };
 
-          case ADD_COUNTRY:
+      case ADD_COUNTRY:
           return { ...state, 
             todosLosPaises: [...payload ],
             paisesOrdenados: [...payload ],
           };
 
-          case ORDER_ABC:
+      case ORDER_ABC:
             let ordenABC = state.paisesOrdenados.sort((a, b) => {
               if (payload === "A-Z") return a.Nombre.localeCompare(b.Nombre);
               if (payload === "Z-A") return b.Nombre.localeCompare(a.Nombre);
@@ -35,7 +36,7 @@ const reducer = (state=initialState, {type, payload}) => {
                 paisPorNombre: ordenABC,
               };
             
-            case ORDER_POB:
+        case ORDER_POB:
         let ordenPOB = state.paisesOrdenados.sort((a, b) => {
           if (payload === "A") return a.Población - b.Población;
           if (payload === "D") return b.Población - a.Población;
@@ -46,7 +47,7 @@ const reducer = (state=initialState, {type, payload}) => {
                 paisPorNombre: ordenPOB,
             }
 
-            case FILTER_CONTI:
+        case FILTER_CONTI:
         let filterCont = payload === "Ordenar" ? state.paisesOrdenados :
         state.todosLosPaises.filter(pais => pais.Continente === payload)
           
@@ -55,6 +56,11 @@ const reducer = (state=initialState, {type, payload}) => {
                 todosLosPaises: filterCont,
                 paisPorNombre: filterCont,
             }
+
+        case ADD_ACTIVITY:  
+          return { ...state, 
+            actividades: [...payload ]
+          };
     
         default:
             return {...state}
