@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
-const URL = "http://localhost:3001/activities";
+import { NavLink } from "react-router-dom";
 
 const FormActivity = ({ postActivity }) => {
 
@@ -21,9 +20,8 @@ const FormActivity = ({ postActivity }) => {
   const [difil, setDifil] = useState("");
   
   const todosLosPaises = useSelector((state) => state.todosLosPaises);
-  const mapeo = todosLosPaises?.map((pais) => pais.Nombre )
-  const paises = mapeo.sort();
-  console.log(paises);
+  const mapeo = todosLosPaises?.map(({id, Nombre}) => ({id, Nombre}))
+  const paises = mapeo.sort((a, b) => a.Nombre.localeCompare(b.Nombre));
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -31,20 +29,22 @@ const FormActivity = ({ postActivity }) => {
   };
 
   const handleChangeTemporada = (event) => {
-    const { value } = event.target;
-    setTempo(value)
-    setActivity({ ...activity, Temporada: value });
+    setTempo(event.target.value)
+    setActivity({ ...activity, Temporada: event.target.value });
   }
   const handleChangeDificultad = (event) => {
-    const { value } = event.target;
-    setDifil(value)
-    setActivity({ ...activity, Dificultad: value });
+    setDifil(event.target.value)
+    setActivity({ ...activity, Dificultad: event.target.value });
   }
 
   const handleSelectChangePais = (event) => {
-    const { name, value } = event.target;
-    setMultPaises([...multPaises, value])
-    setActivity({ ...activity, [name]: activity.Paises.push(value) });
+    setMultPaises([...multPaises, event.target.value]);
+    const push = activity.Paises.push(event.target.value);
+    setActivity({ ...activity, push });
+  }
+  const limpiarPaises = () => {
+    setMultPaises([])
+    setActivity([])
   }
 
   const handleSubmit = (event) => {
@@ -54,8 +54,11 @@ const FormActivity = ({ postActivity }) => {
   
   return (
     <form onSubmit={handleSubmit}>
-     <div>
-      <label className="">Nombre</label>
+      <NavLink to={'/home'}>
+        <button className="home">HOME</button>
+      </NavLink>
+      <div>
+        <label className="">Nombre</label>
         <input
           className=""
           type="text"
@@ -63,6 +66,8 @@ const FormActivity = ({ postActivity }) => {
           value={activity.Nombre}
           name="Nombre"
         />
+
+        <p> </p>
 
         <label className="">Dificultad</label>
         <select className="" onChange={handleChangeDificultad}>
@@ -74,8 +79,10 @@ const FormActivity = ({ postActivity }) => {
             {opcion}
           </option>
         ))}
-      </select>
-      <p>Dificultad: {difil}</p>
+        </select>
+        <label>{difil}</label>
+
+        <p> </p>
 
         <label className="">Duración</label>
         <input
@@ -85,6 +92,9 @@ const FormActivity = ({ postActivity }) => {
           value={activity.Duración}
           name="Duración"
         />
+        <label >Horas</label>
+
+        <p></p>
      
         <label className="">Temporada</label>
         <select className="" onChange={handleChangeTemporada}>
@@ -96,22 +106,24 @@ const FormActivity = ({ postActivity }) => {
             {opcion}
           </option>
         ))}
-      </select>
-        <p>Temporada: {tempo}</p>
+        </select>
+        <label>{tempo}</label>
 
-      <label className="">Pais</label>
-        <select multiple={true} className="" onChange={handleSelectChangePais} value={multPaises}>
-        {paises?.map((opcion) => (
+        <p> </p>
+
+        <label className="">Pais</label>
+        <select multiple={true} className="" onChange={handleSelectChangePais} >
+        {paises?.map(({Nombre, id}) => (
           <option 
             className="" 
-            key={opcion} 
-            value={[opcion]}
-            name={opcion}>
-            {opcion}
+            key={Nombre} 
+            value={[id]}>
+            {Nombre} ({id})
           </option>
         ))}
-      </select>
-      <p>seleccionado: {multPaises.join(", ")}</p>
+        </select>
+        <p>Seleccionados: {multPaises.join(", ")}</p>
+        <button onClick={()=>limpiarPaises()}>Limpiar</button>
       </div>
 
       <div>

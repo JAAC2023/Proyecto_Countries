@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./LandingPage.css";
 import simbol from "../../../Material/Play.jpg"
 

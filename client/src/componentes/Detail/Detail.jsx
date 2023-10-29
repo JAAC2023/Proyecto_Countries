@@ -7,39 +7,50 @@ import { useState, useEffect } from "react";
 export default function Detail() {
 
     const { id } = useParams();
-    const [pais, setPais] = useState()
+    const [pais, setPais] = useState([]);   
 
+    
     useEffect(() => {
-      axios.get(`http://localhost:3001/app/countries/${id}`)
-      .then(({data}) => {
-        if (data) setPais(data);
-        else return(<div>...Cargando</div>)
-      }) 
-        return setPais({})
+      if (pais.length === 0) {
+        axios.get(`http://localhost:3001/app/countries/${id}`)
+        .then(({data}) => {
+          if (data) setPais(data);
+        }) 
+        return setPais({});
+      }
     },[id])
+    
+    const actvidades =  pais.Activities
     
     return (
       <div className="detail">
         <h1 className="">DETAIL</h1>
         <div className="">
-          <NavLink to="/home">
-            <button>Atrás</button>
-          </NavLink>
-          <h2 >Id........{pais?.id}</h2>
+          <h2 >Id........{pais.id}</h2>
           <hr />
-          <h2>Nombre....{pais?.Nombre}</h2>
+          <h2>Nombre....{pais.Nombre}</h2>
           <hr />
-          <h2>Continente....{pais?.Continente}</h2>
+          <h2>Continente....{pais.Continente}</h2>
           <hr />
-          <h2>Capital....{pais?.Capital}</h2>
+          <h2>Capital....{pais.Capital}</h2>
           <hr />
-          <h2>Subregión...{pais?.Subregión}</h2>
+          <h2>Subregión...{pais.Subregión}</h2>
           <hr />
-          <h2>Area...{pais?.Area}</h2>
+          <h2>Area...{pais.Area} m2</h2>
           <hr />
-          <h2>Población...{pais?.Población}</h2>
+          <h2>Población...{pais.Población}</h2>
+          <hr />
+          <h2>Actividades:</h2>
+          {actvidades?.map(({id, Nombre, Dificultad, Duración, Temporada})=>{
+            return (<h2 key={id}>
+              ✅Nombre: {Nombre}, 
+              Dificultad: {Dificultad},
+              Duración:{Duración}h,
+              Temporada:{Temporada}
+              </h2>)
+          })}
         </div>
-        <img className="" src= {pais?.Bandera} alt= "Not Found" />    
+        <img className="" src= {pais.Bandera} alt= "Not Found" />    
       </div>
     )   
 }

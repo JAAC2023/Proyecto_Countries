@@ -35,26 +35,26 @@ const reducer = (state=initialState, {type, payload}) => {
                 paisPorNombre: ordenABC,
               };
             
-        //     case ORDER_POB:
-        // let ordenPOB = state.paises.sort((a, b) => {
-        //   if (payload === "A") return a.Población - b.Población;
-        //   if (payload === "D") return b.Población - a.Población;
-        // });
-        //     return{
-        //       ...state,
-        //         todosLosPaises: ordenPOB,
-        //         paisPorNombre: ordenPOB,
-        //     }
+            case ORDER_POB:
+        let ordenPOB = state.paisesOrdenados.sort((a, b) => {
+          if (payload === "A") return a.Población - b.Población;
+          if (payload === "D") return b.Población - a.Población;
+        });
+            return{
+              ...state,
+                todosLosPaises: ordenPOB,
+                paisPorNombre: ordenPOB,
+            }
 
-        //     case FILTER_CONTI:
-        // let filterCont = payload === "Ordenar" ? state.paises :
-        // state.todosLosPaises.filter(pais => pais.Continente === payload)
+            case FILTER_CONTI:
+        let filterCont = payload === "Ordenar" ? state.paisesOrdenados :
+        state.todosLosPaises.filter(pais => pais.Continente === payload)
           
-        //     return{
-        //       ...state,
-        //         todosLosPaises: filterCont,
-        //         //paisPorNombre: filterCont,
-        //     }
+            return{
+              ...state,
+                todosLosPaises: filterCont,
+                paisPorNombre: filterCont,
+            }
     
         default:
             return {...state}

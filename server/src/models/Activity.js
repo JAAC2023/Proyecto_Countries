@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     Dificultad: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(),
       allowNull: false,
       // validate: {
       //   isInt: true,
