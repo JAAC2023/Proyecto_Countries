@@ -1,5 +1,12 @@
 import axios from "axios";
-import { ADD_COUNTRY_NAME, REMOVE_COUNTRY, ADD_COUNTRY, ORDER_ABC, ORDER_POB, FILTER_CONTI, ADD_ACTIVITY } from "./actionType";
+import { 
+  ADD_COUNTRY_NAME,
+  REMOVE_COUNTRY, 
+  ADD_COUNTRY, 
+  ORDER_ABC, 
+  ORDER_POB, 
+  FILTER_CONTI, 
+  ADD_ACTIVITY, } from "./actionType";
 
 export const addCountry = () => {
   return async (dispatch) => {

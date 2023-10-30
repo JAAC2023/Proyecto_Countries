@@ -43,10 +43,10 @@ export default function Detail() {
           <h2>Actividades:</h2>
           {actvidades?.map(({id, Nombre, Dificultad, Duración, Temporada})=>{
             return (<h2 key={id}>
-              ✅Nombre: {Nombre}, 
-              Dificultad: {Dificultad},
-              Duración:{Duración}h,
-              Temporada:{Temporada}
+              ✅Nombre: {Nombre} | 
+              Dificultad: {Dificultad} |
+              Duración:{Duración}h |
+              Temporada:{Temporada} |
               </h2>)
           })}
         </div>

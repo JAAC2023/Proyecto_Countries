@@ -1,18 +1,34 @@
 import './SearchBar.css'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { filterConti, orderABC, orderPOB, } from '../../Redux/action';
 
-export default function SearchBar({ onSearch, onSearchName, searchAvtivities}) {
+export default function SearchBar({ searchCountries, searchCountry, searchAvtivities}) {
   
   const location = useLocation();
-  const continentes = ["Ordenar", "Africa", "Europe", "Oceania", "Asia", "North America", "South America"];
   const dispatch = useDispatch();
-  const [aux, setAux] = useState(false);
+  const continentes = ["Todo", "Africa", "Europe", "Oceania", "Asia", "North America", "South America"];
   const [pais, setPais] = useState({nombre: "" });
+  const [select1, setSelect1] = useState('');
+  const [select2, setSelect2] = useState('');
+  const [select3, setSelect3] = useState('');
 
-  useEffect(() => onSearch(),[]);
+  // const continentes = () => {
+  //   const todosLosPaises = useSelector((state) => state.todosLosPaises);
+  //   const mapeo = todosLosPaises?.map((pais)=> pais.Continente);
+  //   const conjunto = new Set(mapeo);
+  //   const arreglo = Array.from(conjunto);
+    
+  //   return arreglo
+  // }
+
+  const buscarPais = (pais) => {
+    setPais({nombre:""})
+    return searchCountry(pais)
+  }
+
+  useEffect(() => searchCountries(),[]);
 
   const handleChange = (event) =>{
     setPais({nombre: event.target.value});
@@ -20,18 +36,29 @@ export default function SearchBar({ onSearch, onSearchName, searchAvtivities}) {
 
   const handleOrderABC = (event) => {
     dispatch(orderABC(event.target.value));
-    setAux(!aux)
+    setSelect1(event.target.value)
+    setSelect2("")
   };
 
   const handleOrderPob = (event) => {
     dispatch(orderPOB(event.target.value));
-    setAux(!aux)
+    setSelect2(event.target.value)
+    setSelect1("")
   };
 
   const handlerFilterConti = (event) => {
     dispatch(filterConti(event.target.value));
-    
+    setSelect3(event.target.value)
   };
+
+  const reestablecer = () =>{
+    dispatch(orderABC(""))
+    setSelect1("");
+    dispatch(orderPOB(""))
+    setSelect2("");
+    dispatch(filterConti("Todo"))
+    setSelect3("Todo")
+  }
 
   const display = "SearchBar"
   const displayNone = "none"
@@ -56,7 +83,7 @@ export default function SearchBar({ onSearch, onSearchName, searchAvtivities}) {
       className=""
       value={pais.nombre} />
       <NavLink to={'/home/name'}>
-        <button className="" onClick={() => onSearchName(pais)}>Buscar</button>
+        <button className="" onClick={() => buscarPais(pais)}>Buscar</button>
       </NavLink>
 
       <NavLink to={'/home/name'}>
@@ -64,27 +91,29 @@ export default function SearchBar({ onSearch, onSearchName, searchAvtivities}) {
       </NavLink>
       <p></p>
 
-      <select className="" onChange={handleOrderABC}>
-        <option className="" value="">Ordenar</option>
+      <label>Alfabeticamente: </label>
+      <select value={select1} className="" onChange={handleOrderABC}>
+        <option className="" value="">Seleccionar</option>
         <option className="" value="A-Z">A ⬆ Z</option>
         <option className="" value="Z-A">Z ⬇ A</option>
       </select>
-    
-      <select className="" onChange={handlerFilterConti}>
+
+      <label>  Numero de habitantes: </label>
+      <select value={select2} className="" onChange={handleOrderPob}>
+        <option className="" value="">Seleccionar</option>
+        <option className="" value="A">Ascendente</option>
+        <option className="" value="D">Descendente</option>
+      </select>
+
+      <label>  Por Continente: </label>
+      <select value={select3} className="" onChange={handlerFilterConti}>
         {continentes.map((option) => (
           <option className="" key={option} value={option}>
             {option}
           </option>
         ))}
       </select>
-
-      <select className="" onChange={handleOrderPob}>
-        <option className="" value="">Ordenar</option>
-        <option className="" value="A">Ascendente</option>
-        <option className="" value="D">Descendente</option>
-      </select>
-
-      
+      <button onClick={() => reestablecer()}>Reestablecer</button>
     </div>
     )
 }

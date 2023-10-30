@@ -1,5 +1,11 @@
-export default function Avtivities({ actividades }) {
+import { useSelector } from "react-redux";
+
+export default function Avtivities() {
+
+  const actividades = useSelector((state) => state.actividades);
+
   let contador = 1;
+
   return (
      <div className="">
         {actividades?.map((activ) => (

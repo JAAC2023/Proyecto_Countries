@@ -10,7 +10,7 @@ const FormActivity = ({ postActivity }) => {
 
   const [activity, setActivity] = useState({
     Nombre: "",
-    Dificultad: "",
+    Dificultad: 0,
 		Duración: "",
 		Temporada: "",
 		Paises: []
