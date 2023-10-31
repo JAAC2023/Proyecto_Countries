@@ -71,12 +71,15 @@ export default function Cards() {
     const pages = [];
     for (let i = 1; i <= maximoDePaginas; i++) {
       pages.push(
-        <button
+        <div className="botonPagina">
+          <button
           key={i}
           onClick={() => setPaginaActual(i)}
-          className={i === paginaActual ? 'active' : ''}>
+          className={i === paginaActual ? 'pagina' : 'paginas'}>
           {i}
         </button>
+        </div>
+        
       );
     }
     return pages;
@@ -98,9 +101,9 @@ export default function Cards() {
          />
          ))}
          <div>
-          <button className="anterior" onClick={handlePreviousPage} disabled={paginaActual === 1}>Anterior</button>
+          <button className="anterior" onClick={handlePreviousPage} disabled={paginaActual === 1}>◀</button>
           {renderPagination()}
-          <button className="siguiente" onClick={handleNextPage} disabled={paginaActual * cardsPorPagina >= todosLosPaises.length}>Siguiente</button>
+          <button className="siguiente" onClick={handleNextPage} disabled={paginaActual * cardsPorPagina >= todosLosPaises.length}>▶</button>
          </div>
       </div>
    )

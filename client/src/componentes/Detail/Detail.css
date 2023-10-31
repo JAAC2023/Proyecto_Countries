@@ -1,3 +1,45 @@
-.detail {
-  text-align: center;  
+
+.detail{
+  overflow: hidden;
+  flex-shrink: 5;
+}
+
+.titulo{
+  padding: 0% 0% 0% 0.7%;
+  background: rgba(255, 255, 255, 0.5); /* Fondo semitransparente */
+  border-radius: 10px; /* Bordes redondeados */
+  backdrop-filter: blur(1px); /* Efecto de desenfoque */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+  position: absolute;
+  top: 40px;
+  left: 43%;
+  letter-spacing: 1cqb;
+  font-family: amatic;
+  color:rgb(153, 255, 0);
+  text-shadow: 1px 1px 1px rgb(0, 0, 0),  1px 1px 10px rgb(0, 0, 0);
+  font-size: 40px;
+}
+
+.texto{
+  text-align: justify;
+  position: absolute;
+  top: 139px;
+  left: 137mm;
+  background-color: rgba(163, 163, 163, 0.747);
+  font-family: monospace;
+  padding:0mm 20mm 0mm 3mm;
+  width:50%;
+  border-radius: 0% 3em 3em 0%;
+  font-size: 80%;
+}
+
+.imagen{
+  position: absolute;
+  top: 125px;
+  left: 5%;
+  width: 32%;
+  height: 433px;
+  padding: 1% 57% 1% 1%;
+  border-radius: 3em;
+  box-shadow: 1px 1px 10px rgb(145, 255, 0),  1px 1px 10px rgb(0, 255, 0)
 }

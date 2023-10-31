@@ -24,8 +24,8 @@ export default function Detail() {
     
     return (
       <div className="detail">
-        <h1 className="">DETAIL</h1>
-        <div className="">
+        <h1 className="titulo">DETALLE</h1>
+        <div className="texto">
           <h2 >Id........{pais.id}</h2>
           <hr />
           <h2>Nombre....{pais.Nombre}</h2>
@@ -50,7 +50,7 @@ export default function Detail() {
               </h2>)
           })}
         </div>
-        <img className="" src= {pais.Bandera} alt= "Not Found" />    
+        <img className="imagen" src= {pais.Bandera} alt= "Not Found" />    
       </div>
     )   
 }

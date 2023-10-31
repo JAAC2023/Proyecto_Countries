@@ -72,13 +72,14 @@ export default function CardsForName({ onClose }) {
     const pages = [];
     for (let i = 1; i <= maximoDePaginas; i++) {
       pages.push(
-        <button
-          key={i}
-          onClick={() => setPaginaActual(i)}
-          className={i === paginaActual ? 'active' : ''}
-        >
-          {i}
-        </button>
+        <div className="botonPagina">
+          <button
+           key={i}
+            onClick={() => setPaginaActual(i)}
+            className={i === paginaActual ? 'pagina' : 'paginas'}>
+            {i}
+          </button>
+        </div>
       );
     }
     return pages;
@@ -86,7 +87,7 @@ export default function CardsForName({ onClose }) {
 
 
    return (
-    <div>
+    <div className="cards">
       {cardsVisibles?.map((pais) => (
         <Card
           key={pais.id}
@@ -102,10 +103,10 @@ export default function CardsForName({ onClose }) {
         />
       ))}
       <div>
-          <button onClick={handlePreviousPage} disabled={paginaActual === 1}>Anterior</button>
+        <button className="anterior" onClick={handlePreviousPage} disabled={paginaActual === 1}>◀</button>
           {renderPagination()}
-          <button onClick={handleNextPage} disabled={paginaActual * cardsPorPagina >= paisPorNombre.length}>Siguiente</button>
-        </div>
+        <button className="siguiente" onClick={handleNextPage} disabled={paginaActual * cardsPorPagina >= paisPorNombre.length}>▶</button>
+      </div>
     </div>
   )
 }

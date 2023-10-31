@@ -9,14 +9,14 @@ function Card({ id, Nombre, Bandera, Continente, Capital, Subregión, Area, Pobl
    return (
     <div id={id} className="card">
       {location.pathname === '/home/name'?
-        <button className="cerrar"onClick={()=>onClose(id)}>❌</button> : 
+        <label className="cerrar"onClick={()=>onClose(id)}>❌</label> : 
         <NavLink to={`/detail/${id}`}>
-          <button className="cerrar">👀</button>
+          <label className="detalle">👀</label>
         </NavLink> }
          
       <h1 className="nombre">{Nombre}</h1>
       <h1 className="continente">{mayuscula}</h1>
-         
+
       {location.pathname === '/home/name'?
         <NavLink to={`/detail/${id}`}>
           <img src={Bandera} alt="" className="bandera"/>

@@ -1,46 +1,81 @@
 .card{
-  background-color: rgba(62, 95, 45, 0.535);
+  background-color: rgba(95, 95, 95, 0.664);
   float: left;
   padding: 0% 0% 0% 30%;
   width: 5%;
   margin: 10px;
   border-radius: 2mm;
   position: relative;
-  left: 25%;
+  left: 364px;
   height: 11ch;
 }
 
 .bandera{
+  height: 76px;
   position: relative;
   right: 592%;
-  top: -6px;
-  width: 15ch;
-  border-top: 10%;
+  top:-75px;
+  width: 16ch; 
   border-radius: 2mm 0mm 0mm 2mm;
+  object-fit: cover;
+  box-shadow: rgb(7, 7, 7) 0px 0px 10px;
 }
 
 .nombre{
   position: relative;
-  right: 350%;
-  font-size: 150%;
-  margin: -10% 0% 0% 0%;
+  right: 380%;
+  top: -48px;
+  font-size: 200%;
   white-space: pre;
+  font-family: amatic;
+  text-shadow: white 0px 0px 8px;
+  text-decoration: underline;
 }
 
 .continente{
   font-size: 150%;
   position: relative;
-  right: 350%;
+  top: -65px;
+  right: 385%;
   margin: 0% 0% -100% 0%;
   padding: 5%;
-  color: rgb(49, 49, 49);
+  color: rgb(78, 16, 16);
   white-space: pre;
+  z-index: 1;
+  text-decoration: underline;
+  text-shadow: white 0px 0px 8px;
 }
 
 .cerrar{
-position: relative;
+  position: relative;
+  top: 5px;
+  left: 20px;
+  background-color: rgba(178, 248, 107, 0.678);
+  border-radius: 5mm;
+  padding: 5px;
+  font-size: 150%;
+}
+.cerrar:hover{
+  transition: 300ms;
+  cursor: pointer;
+  transform: scale(1.2);
+  box-shadow: rgb(74, 255, 2) 0px 0px 10px;
+  background-color: rgb(124, 248, 0);
 }
 
-.x{
+.detalle{
   position: relative;
+  top: 0px;
+  left: 30px;
+  font-size: 150%;
+  background-color: chartreuse;
+  border-radius: 3mm;
+}
+
+.detalle:hover{
+  transition: 300ms;
+  cursor: pointer;
+  transform: scale(1.2);
+  box-shadow: rgb(74, 255, 2) 0px 0px 10px;
+  background-color: rgb(124, 248, 0);
 }
