@@ -5,3 +5,5 @@ export const ADD_COUNTRY = "ADD_COUNTRY";
 export const REMOVE_COUNTRY = "REMOVE_COUNTRY";
 export const ADD_COUNTRY_NAME = "ADD_COUNTRY_NAME";
 export const ADD_ACTIVITY = "ADD_ACTIVITY";
+export const FILTER_ACTIV = "FILTER_ACTIV";
+export const ADD_COUNTRY_ACTIV = "ADD_COUNTRY_ACTIV";

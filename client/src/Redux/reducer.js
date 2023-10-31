@@ -5,7 +5,8 @@ import {
   ORDER_ABC, 
   ORDER_POB, 
   FILTER_CONTI, 
-  ADD_ACTIVITY,} from "./actionType"
+  ADD_ACTIVITY,
+  FILTER_ACTIV,} from "./actionType"
 
 const initialState = {
   todosLosPaises: [],
@@ -13,6 +14,7 @@ const initialState = {
   actividades:[],
   orderABC: "",
   filtroConti: "Todo",
+  filtroActiv: "Todo",
   orderPob: "",
 }
 
@@ -53,10 +55,16 @@ const reducer = (state=initialState, {type, payload}) => {
         ...state
       }
 
+    case FILTER_ACTIV:   
+      state.filtroActiv = payload;  
+      return {
+        ...state
+      }
+
     case ADD_ACTIVITY:  
       return { ...state, 
-        actividades: [...payload ]
-      };
+        actividades: payload
+      }
     
     default:
       return {...state}

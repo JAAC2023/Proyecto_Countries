@@ -1,4 +1,4 @@
-import "./CardsForName.css"
+import "./CardsByName.css"
 import Card from "../Card/Card";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -8,32 +8,44 @@ export default function CardsForName({ onClose }) {
   const orderABCD = useSelector((state) => state.orderABC);
   const orderPobl = useSelector((state) => state.orderPob);
   const filtroContin = useSelector((state) => state.filtroConti);
+  const filtroActivi = useSelector((state) => state.filtroActiv);
   const paisPorNombre = useSelector((state) => state.paisPorNombre);
 
-  const filtros = () => {
-    let paisesNombre = [...paisPorNombre]
+  const filtros = (paisesNombre = [...paisPorNombre]) => {
+  
+    switch (true) {
 
-    if (orderABCD !== "") {
-      paisesNombre = [...paisesNombre].sort((a, b) => {
-        return orderABCD === "A-Z" ?
-        a.Nombre.localeCompare(b.Nombre):
-        b.Nombre.localeCompare(a.Nombre);
-      });
+      case orderABCD !== "":
+        paisesNombre = [...paisesNombre].sort((a, b) => {
+          return orderABCD === "A-Z" ?
+            a.Nombre.localeCompare(b.Nombre) :
+            b.Nombre.localeCompare(a.Nombre);
+        });
+        break;
+  
+      case orderPobl !== "":
+        paisesNombre = [...paisesNombre].sort((a, b) => {
+          return orderPobl === "A" ? a.Población - b.Población : b.Población - a.Población;
+        });
+        break;
+  
+      case filtroContin !== "Todo":
+        paisesNombre = [...paisesNombre].filter(pais => pais.Continente === filtroContin);
+        break;
+  
+      case filtroActivi !== "Todo":
+        paisesNombre = paisesNombre.filter(pais => {
+          let actividades = pais.Activities.flatMap(pa => pa.Nombre);
+          return actividades.includes(filtroActivi);
+        });
+        break;
+
+        default:
+          return paisesNombre
     }
-
-     if (orderPobl !== "") {
-      paisesNombre = [...paisesNombre].sort((a, b) => {
-        return orderPobl === "A" ? a.Población - b.Población :
-        b.Población - a.Población;
-      })
-    }
-
-    if (filtroContin !== "Todo") {
-      paisesNombre = [...paisesNombre].filter(pais => pais.Continente === filtroContin)
-      }
-
+  
     return paisesNombre;
-  }
+  };
 
   const [paginaActual, setPaginaActual] = useState(1);
   const cardsPorPagina = 10;

@@ -8,32 +8,44 @@ export default function Cards() {
   const orderABCD = useSelector((state) => state.orderABC);
   const orderPobl = useSelector((state) => state.orderPob);
   const filtroContin = useSelector((state) => state.filtroConti);
+  const filtroActivi = useSelector((state) => state.filtroActiv);
   const todosLosPaises = useSelector((state) => state.todosLosPaises);
-  const paisPorNombre = useSelector((state) => state.paisPorNombre);
 
-  const filtros = () => {
-    let paises = [...todosLosPaises];
+  const filtros = (paises = [...todosLosPaises]) => {
 
-    if (orderABCD !== "") {
-      paises = [...paises].sort((a, b) => {
-        return orderABCD === "A-Z" ?
-        a.Nombre.localeCompare(b.Nombre):
-        b.Nombre.localeCompare(a.Nombre);
-      });
+    switch (true) {
+      
+      case orderABCD !== "":
+        paises = [...paises].sort((a, b) => {
+          return orderABCD === "A-Z" ?
+            a.Nombre.localeCompare(b.Nombre) :
+            b.Nombre.localeCompare(a.Nombre);
+        });
+        break;
+  
+      case orderPobl !== "":
+        paises = [...paises].sort((a, b) => {
+          return orderPobl === "A" ? a.Población - b.Población : b.Población - a.Población;
+        });
+        break;
+  
+      case filtroContin !== "Todo":
+        paises = [...paises].filter(pais => pais.Continente === filtroContin);
+        break;
+  
+      case filtroActivi !== "Todo":
+        paises = paises.filter(pais => {
+          let actividades = pais.Activities.flatMap(pa => pa.Nombre);
+          return actividades.includes(filtroActivi);
+        });
+        break;
+  
+      default:
+        return paises
     }
-
-     if (orderPobl !== "") {
-      paises = [...paises].sort((a, b) => {
-        return orderPobl === "A" ? a.Población - b.Población :
-        b.Población - a.Población;
-      })
-    }
-
-    if (filtroContin !== "Todo") {
-      paises = [...paises].filter(pais => pais.Continente === filtroContin)
-      }
+  
     return paises;
-  }
+  };
 
   const [paginaActual, setPaginaActual] = useState(1);
   const cardsPorPagina = 10;
@@ -51,21 +63,18 @@ export default function Cards() {
   let maximoDePaginas = Math.ceil(todosLosPaises.length / cardsPorPagina)
 
   const handleNextPage = () => {
-    //const maximoDePaginas = Math.ceil(todosLosPaises.length / cardsPorPagina);
     if (paginaActual < maximoDePaginas) {
       setPaginaActual(paginaActual + 1);
     }
   };
   const renderPagination = () => {
-    //const maximoDePaginas = Math.ceil(todosLosPaises.length / cardsPorPagina);
     const pages = [];
     for (let i = 1; i <= maximoDePaginas; i++) {
       pages.push(
         <button
           key={i}
           onClick={() => setPaginaActual(i)}
-          className={i === paginaActual ? 'active' : ''}
-        >
+          className={i === paginaActual ? 'active' : ''}>
           {i}
         </button>
       );

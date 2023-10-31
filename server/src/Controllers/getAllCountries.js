@@ -1,9 +1,15 @@
-const { Country } = require("../db");
+const { Country, Activity } = require("../db");
 
 const getCountries = async (req, res) => {
   try {
   
-    const respuesta = await Country.findAll();
+    const respuesta = await Country.findAll({
+      include:{
+        model:Activity,
+        through:{
+          attributes:[]
+        },
+      }});
     res.json (respuesta);
 
   } catch (error) {

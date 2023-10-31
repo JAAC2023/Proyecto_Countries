@@ -11,6 +11,7 @@ router.get("/countries/name", getCountryByName);
 router.get("/countries/:id", getCountryById);
 router.get("/countries", getAllCountries);
 
+
 //___________________Activities_____________________
 router.get("/activities", getAllActivities);
 router.post("/activities", postActivityHandler);

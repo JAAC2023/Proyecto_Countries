@@ -3,13 +3,13 @@ import axios from "axios";
 import { useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addActivity, addCountry, addCountryName, removeCountry } from "./Redux/action";
+import { addActivity, addCountry, addCountryName, removeCountry, } from "./Redux/action";
 
 import Detail from "./componentes/Detail/Detail";
 import Cards from "./componentes/Cards/Cards.jsx";
 import SearchBar from "./componentes/SerachBard/SearchBar.jsx";
 import LandingPage from "./componentes/LandingPage/LandingPage.jsx";
-import CardsForName from "./componentes/CardsForName/CardsForName.jsx";
+import CardsForName from "./componentes/CardsByName/CardsByName.jsx";
 import FormActivity from "./componentes/FormActivity/FormActivity";
 import Avtivities from "./componentes/Activities/Activities";
 
@@ -39,6 +39,11 @@ function App() {
     dispatch(addCountry());
   }
 
+  const searchAvtivities = () => {
+    dispatch(addActivity());
+  }
+
+
   const postActivity = async({ Nombre, Dificultad, Duración, Temporada, Paises }) => {
     
     try { 
@@ -50,16 +55,12 @@ function App() {
     }
   }
 
-  const searchAvtivities = () => {
-    dispatch(addActivity());
-  }
-
   return (
   <div className="app">
     {location.pathname !== "/" && <SearchBar 
     searchCountries={searchCountries} 
     searchCountry={searchCountry} 
-    searchAvtivities={searchAvtivities} />}
+    searchAvtivities={searchAvtivities} />} 
     
     <Routes>
       <Route path="/home" element={<Cards />} />

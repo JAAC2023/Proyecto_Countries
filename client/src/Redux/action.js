@@ -6,7 +6,8 @@ import {
   ORDER_ABC, 
   ORDER_POB, 
   FILTER_CONTI, 
-  ADD_ACTIVITY, } from "./actionType";
+  ADD_ACTIVITY,
+  FILTER_ACTIV,} from "./actionType";
 
 export const addCountry = () => {
   return async (dispatch) => {
@@ -51,6 +52,10 @@ export const orderPOB = (order) => {
 
 export const filterConti = (filter) => {
   return {type: FILTER_CONTI, payload: filter}
+}
+
+export const filterActiv = (filter) => {
+  return {type: FILTER_ACTIV, payload: filter}
 }
 
 export const addActivity = () => {

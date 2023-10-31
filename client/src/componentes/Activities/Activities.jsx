@@ -15,6 +15,7 @@ export default function Avtivities() {
            Dificultad: {activ.Dificultad} | 
            Duración: {activ.Duración} |  
            Temporada: {activ.Temporada} |
+           Paises: {activ.Countries?.map((pais) => <label key={pais.id} >{pais.Nombre}, </label>)}<hr></hr>
         </h1>
         ))}
      </div>
