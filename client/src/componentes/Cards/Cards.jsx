@@ -98,9 +98,9 @@ export default function Cards() {
          />
          ))}
          <div>
-          <button onClick={handlePreviousPage} disabled={paginaActual === 1}>Anterior</button>
+          <button className="anterior" onClick={handlePreviousPage} disabled={paginaActual === 1}>Anterior</button>
           {renderPagination()}
-          <button onClick={handleNextPage} disabled={paginaActual * cardsPorPagina >= todosLosPaises.length}>Siguiente</button>
+          <button className="siguiente" onClick={handleNextPage} disabled={paginaActual * cardsPorPagina >= todosLosPaises.length}>Siguiente</button>
          </div>
       </div>
    )

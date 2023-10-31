@@ -1,3 +1,15 @@
 .cards{
 
 }
+
+.anterior{
+position: relative;
+top: 532px;
+right: 990px;
+}
+
+.siguiente{
+position: relative;
+top: 490px;
+left: 232px;
+}

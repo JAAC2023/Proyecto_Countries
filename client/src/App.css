@@ -1,3 +1,9 @@
 .app{
-  background-color: aqua;
+  background-image: url(../Material/f5.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+  height: 100vh;
+  overflow: hidden;
+  margin: -1ch;
 }
