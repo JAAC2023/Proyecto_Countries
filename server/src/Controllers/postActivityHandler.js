@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Activity } = require("../db");
 const postActivityController = require("./postActivityController");
 
@@ -6,17 +7,17 @@ const postActivityHandler = async (req, res) => {
 
   try {
     if (!Nombre || !Dificultad || !Duración || !Temporada || !Paises) {
-      return res.status(400).send("Faltan Datos!");
-    } else if (await Activity.findOne({ where: { Nombre } })) {
+      throw new Error('Faltan Datos!');
+    } else if (await Activity.findOne({ where: { Nombre: { [Op.iLike]: Nombre } } })) {
       throw new Error(
         `"${Nombre}" ya existe, por favor escriba otra actividad!`
       );
     } else {
       await postActivityController({ Nombre, Dificultad, Duración, Temporada, Paises,});
-      res.status(200).send(`Actividad "${Nombre}" fue creada satisfactoriamente!`);
+      res.status(201).send(`Actividad "${Nombre}" fue creada satisfactoriamente!`);
     }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).send({ error: error.message });
   }
 };
 

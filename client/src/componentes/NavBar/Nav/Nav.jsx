@@ -1,11 +1,11 @@
-import "./SearchBar.css";
+import "./Nav.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import estados from "../../../index/estadosGlobales";
+import estados from "../../../utils/estadosGlobales";
 import handlers from "../handlers/handlers";
 import selects from "../selectsRender/selects";
 
-export default function SearchBar({
+export default function Nav({
   searchCountries,
   searchCountry,
   searchAvtivities,

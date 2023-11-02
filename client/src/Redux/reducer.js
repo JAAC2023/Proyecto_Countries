@@ -13,9 +13,9 @@ const initialState = {
   paisPorNombre: [],
   actividades:[],
   orderABC: "",
+  orderPob: "",
   filtroConti: "Todo",
   filtroActiv: "Todo",
-  orderPob: "",
 }
 
 const reducer = (state=initialState, {type, payload}) => {

@@ -1,8 +1,8 @@
 import "./CardsByName.css";
 import { useState } from "react";
+import { casosCardsName } from "../filtros/filtrosCards";
 import Card from "../../Card/Card";
-import { casosCardsName } from "../filtros/filtrosCards"; 
-import estados from "../../../index/estadosGlobales";
+import estados from "../../../utils/estadosGlobales";
 
 export default function CardsByName({ onClose }) {
   const { paisPorNombre } = estados();

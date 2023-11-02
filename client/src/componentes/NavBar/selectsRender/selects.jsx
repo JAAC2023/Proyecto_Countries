@@ -1,4 +1,4 @@
-import estados from "../../../index/estadosGlobales";
+import estados from "../../../utils/estadosGlobales";
 import handlers from "../handlers/handlers";
 
 export default function selects() {

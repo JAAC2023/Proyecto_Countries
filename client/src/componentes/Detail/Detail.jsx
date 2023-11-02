@@ -1,6 +1,6 @@
 import "./Detail.css"
 import axios from "axios"
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 

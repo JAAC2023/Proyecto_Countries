@@ -1,17 +1,27 @@
 export default function validation({ Nombre, Duración, Dificultad,Temporada, Paises }) {
 
   let error = {};
-  let regexUnaPalabra = /^(?!.*(\w)\1)[A-Za-z]*$/;
-  let regexVariasPalabras = /^(?!.*(\w+)\s\1)([A-Za-z]+\s[A-Za-z]+(\s[A-Za-z]+)?)$/;
+  let rxGramatical = /^[A-Za-záéíóúÁÉÍÓÚüÜñÑ\s]+$/
+  let rxLetraRepetida = /^(?!.*(\w)\1)[A-Za-z]*$/; 
+  let rxPalabraRepetida = /^(?!.*\b(\w+)\b\s\b\1\b)([A-Za-z]+\s[A-Za-z]+(\s[A-Za-z]+)?)$/;
+  let rx3ConsVocSeguidas = /^(?:(?![aeiouAEIOU]{3})[a-zA-Z])*(?:(?![b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]{3})[a-zA-Z])*$/i
   let duracionArray = Duración.split(""); 
+  
 
   const hayNumeroDel0Al9 = duracionArray.some((elemento) => {
     const numero = Number(elemento);
     return numero >= 0 && numero <= 9;
   });
   
-  if (regexUnaPalabra.test(Nombre) || regexVariasPalabras.test(Nombre)) error.Nombre = "Bien ✔";
-  else error.Nombre = "Debe ser un nombre valido";
+
+  if (Nombre.length > 4 ) {
+    if (rxGramatical.test(Nombre) || rxLetraRepetida.test(Nombre) ) error.Nombre = "Bien ✔"; 
+    if (rxPalabraRepetida.test(Nombre) || rx3ConsVocSeguidas.test(Nombre)) error.Nombre = "Bien ✔"; 
+    else error.Nombre = "Debe ser un nombre valido";
+  } else error.Nombre = "Debe ser un nombre valido"
+  
+
+  
 
   if (!Nombre) error.Nombre = "Este campo no puede estar vacio";
   if (!Duración) error.Duración = "Este campo no puede estar vacio";

@@ -1,8 +1,8 @@
 import "./Cards.css";
 import { useState } from "react";
+import { casosCards } from "../filtros/filtrosCards";
 import Card from "../../Card/Card";
-import { casosCards } from "../filtros/filtrosCards"; 
-import estados from "../../../index/estadosGlobales";
+import estados from "../../../utils/estadosGlobales";
 
 export default function Cards() {
   const { todosLosPaises } = estados();
