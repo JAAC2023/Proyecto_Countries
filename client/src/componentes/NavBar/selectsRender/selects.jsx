@@ -13,6 +13,7 @@ export default function selects() {
     handleOrderPob,
     handlerFilterActiv,
     handlerFilterConti,
+    reestablecer,
   } = handlers();
 
   const actividadesSelect = () => {
@@ -33,28 +34,16 @@ export default function selects() {
     <div>
       <label>Alfabeticamente: </label>
       <select value={select1} className="" onChange={handleOrderABC}>
-        <option className="" value="">
-          Seleccionar
-        </option>
-        <option className="" value="A-Z">
-          A ⬆ Z
-        </option>
-        <option className="" value="Z-A">
-          Z ⬇ A
-        </option>
+        <option className="" value="">Seleccionar</option>
+        <option className="" value="A-Z">A ⬆ Z</option>
+        <option className="" value="Z-A">Z ⬇ A</option>
       </select>
 
       <label> Numero de habitantes: </label>
       <select value={select2} className="" onChange={handleOrderPob}>
-        <option className="" value="">
-          Seleccionar
-        </option>
-        <option className="" value="A">
-          Ascendente
-        </option>
-        <option className="" value="D">
-          Descendente
-        </option>
+        <option className="" value="">Seleccionar</option>
+        <option className="" value="A">Ascendente</option>
+        <option className="" value="D">Descendente</option>
       </select>
 
       <label> Por Continente: </label>
@@ -74,6 +63,7 @@ export default function selects() {
           </option>
         ))}
       </select>
+      <button onClick={() => reestablecer()}>resstablecer</button>
     </div>
   );
 }

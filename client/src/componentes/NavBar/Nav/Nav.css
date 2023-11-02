@@ -1,8 +1,10 @@
-.searchBar{
+.NavBar{
   position: relative;
   margin: 0% 0% -5% 0%;
   overflow: auto;
   display: inline;
+  text-align: center;
+  justify-content: center;
 }
 
 .home{

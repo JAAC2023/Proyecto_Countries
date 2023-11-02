@@ -31,7 +31,7 @@ export const addCountryName = (pais) => {
           return dispatch ({type: ADD_COUNTRY_NAME, payload: data});
         }
       } catch (error) {
-         window.alert ("No existe este país");
+         window.alert (error.response.data);
       }
     };
 };

@@ -41,8 +41,7 @@ const filtros = () => {
 
 const casosCards = () => {
   const { alfabeto, poblacion, continente, actividad } = filtros();
-  const { orderABCD, orderPobl, filtroActivi, filtroContin, todosLosPaises } =
-    estados();
+  const { orderABCD, orderPobl, filtroActivi, filtroContin, todosLosPaises } = estados();
   const paises = [...todosLosPaises];
 
   switch (true) {
@@ -61,8 +60,7 @@ const casosCards = () => {
 
 const casosCardsName = () => {
   const { alfabeto, poblacion, continente, actividad } = filtros();
-  const { orderABCD, orderPobl, filtroActivi, filtroContin, paisPorNombre } =
-    estados();
+  const { orderABCD, orderPobl, filtroActivi, filtroContin, paisPorNombre } = estados();
   const paisesNombre = [...paisPorNombre];
 
   switch (true) {

@@ -14,7 +14,6 @@ const FormActivity = ({ postActivity }) => {
     handleChangeDificultad,
     handleChangeTemporada,
     handleSelectChangePais,
-    limpiarPaises,
   } = handlers();
 
   const temporada = ["", "Verano", "Otoño", "Invierno", "Primavera"];

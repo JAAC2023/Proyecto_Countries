@@ -12,23 +12,21 @@ export default function Nav({
 }) {
   const location = useLocation();
   const { paisPorNombre } = estados();
-  const { pais, setPais, handleChange, reestablecer } = handlers();
+  const { pais, setPais, handleChange } = handlers();
 
   useEffect(() => searchCountries(), []);
   useEffect(() => searchAvtivities(), []);
 
   const buscarPais = (pais) => {
-    if (pais.nombre !== "") {
       let mapeo = paisPorNombre?.map((pais) => pais.Nombre.toUpperCase());
       let paisInputMayus = pais.nombre.toUpperCase();
       if (!mapeo.includes(paisInputMayus)) {
         setPais({ nombre: "" });
         return searchCountry(pais);
       } else window.alert("Ya existe este país en la lista");
-    } else window.alert("Por favor ingresa un nombre");
   };
   //-------------display de la searchBar para crear activididad--------------
-  const display = "SearchBar";
+  const display = "NavBar";
   const displayNone = "none";
   //-------------------------------------------------------------------------
 
@@ -66,8 +64,6 @@ export default function Nav({
       <p></p>
 
       {selects()}
-
-      <button onClick={() => reestablecer()}>resstablecer</button>
 
       <NavLink to={"/"}>
         <button className="home">Cerrar</button>

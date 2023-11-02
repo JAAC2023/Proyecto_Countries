@@ -19,7 +19,8 @@ const getCountryByName = async (req, res) => {
         },
       } 
     });
-    if (!respuesta) return res.status(404).send("No se encontró ningún registro con el nombre proporcionado")
+    
+  if (!respuesta) return res.status(404).send("No se encontró ningún registro con el nombre proporcionado")
     res.status(200).json(respuesta);
 
   } catch (error) {
