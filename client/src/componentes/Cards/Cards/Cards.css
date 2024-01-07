@@ -1,79 +1,99 @@
-.cards{
-  position: relative;
+.Contenedor{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+  z-index: 0;
 }
 
-.anterior{
-  position: absolute;
-  top: 400px;
-  right: 87%;
- 
+.Cards{
+  display: grid;
+  grid-template-columns: 50% 52%;
+  height: 32rem;
+  box-shadow: rgb(7, 7, 7) 0px 0px 10px;
+  align-items: center;
+  padding-right: 0.4rem;
+  border-radius: 1rem 0rem 0rem 1rem;
+}
+
+.ContainCards{
+  justify-content: end;
+  display: flex;
+  flex-direction: column;
+  height: 35.5rem;
+}
+
+.botoAanterior{
   border: none;
-  font-size: 150%;
-  padding: 0px 10px 0px 10px;
+  font-size: 110%;
   border-radius: 10mm 0mm 0mm 10mm ;
+  background-color: rgba(240, 248, 255, 0.471);
+  box-shadow: rgb(7, 7, 7) 0px 0px 10px;
+  padding-bottom: 0.2rem;
 }
 
-.anterior:hover{
+.botoAanterior:hover{
 background-color: rgb(100, 255, 0);
 transition: 300ms;
 cursor: pointer;
 transform: scale(1.1);
 box-shadow: rgb(0, 0, 0) 0px 10px 10px;
 }
-.anterior:active{
+.botoAanterior:active{
   transform: scale(1);
 }
 
-.siguiente{
-  position: absolute;
-  top: 400px;
-  left: 200px;
+.botoSiguiente{
+  padding-bottom: 0.2rem;
   border: none;
-  font-size: 150%;
-  padding: 0px 10px 0px 10px;
+  font-size: 110%;
   border-radius: 0mm 10mm 10mm 0mm ;
+  background-color: rgba(240, 248, 255, 0.471);
+  box-shadow: rgb(7, 7, 7) 0px 0px 10px;
 }
-.siguiente:hover{
+.botoSiguiente:hover{
   background-color: rgb(100, 255, 0);
   transition: 300ms;
   cursor: pointer;
   transform: scale(1.1);
   box-shadow: rgb(0, 0, 0) 0px 10px 10px;
 }
-.siguiente:active{
+.botoSiguiente:active{
   transform: scale(1);
 }
 
-.pagina{
+.B-pagina{
+  width: 2rem;
   background-color: rgb(100, 255, 0);
-  width: 40px;
   border: none;
-  border-radius: 10mm;
+  border-radius: 1rem;
   box-shadow: rgb(0, 0, 0) 0px 10px 10px;
   transition: 300ms;
-  color: rgb(3, 3, 3);
+  font-weight: 700;
 }
 
-.paginas{
-  position: relative;
-  width: 40px;
-  border-radius: 10mm;
+.B-paginas{
+  background-color: rgba(240, 248, 255, 0.471);
+  border-radius: 1rem;
   border: none;
-  
+  width: 2rem;
+  font-weight: 700;
+  box-shadow: rgb(7, 7, 7) 0px 0px 10px;
 }
 
-.paginas:hover{
+.B-paginas:hover{
   transition: 200ms;
   cursor: pointer;
   transform: scale(1.1);
   box-shadow: rgb(0, 0, 0) 0px 10px 10px;
 }
 
-.botonPagina{
-  position: relative;
-  top: 0px;
-  right: 980px;
-  float: left;
-  margin: 6px 10px 0px 0px;
-  width: 40px;
+.contPaginado{
+  background-color: rgba(0, 0, 0, 0.353);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: rgb(7, 7, 7) 0px 0px 10px;
 }

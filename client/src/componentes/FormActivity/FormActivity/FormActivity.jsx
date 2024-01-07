@@ -95,14 +95,28 @@ const FormActivity = ({ postActivity }) => {
           ))}
         </select>
         {errores.Paises ? <p>{errores.Paises}</p> : <p>...</p>}
-        <p>Seleccionados: {multPaises.join(", ")}</p>
-
+        <p>
+            Seleccionados: {multPaises.map((item, index) => (
+              typeof item === "string" ? (
+              // Si es una cadena de texto, simplemente mostrarla
+              item
+              ) : (
+                JSON.stringify(item)
+              )
+              )).join(", ")
+            }
+            
+        </p>
+        
       </div>
       <div>
         <button type="submit" >ENVIAR</button>
       </div>
     </form>
+    
   );
 };
+
+{/* <p>Seleccionados: {multPaises.join(", ")}</p> */}
 
 export default FormActivity;

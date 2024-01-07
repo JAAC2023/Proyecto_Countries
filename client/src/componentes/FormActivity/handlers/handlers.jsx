@@ -33,15 +33,18 @@ export default function handlers() {
     setErrores(validation({ ...activity, Dificultad: event.target.value }));
   }
   
+  const cerrar = (id) =>{
+    setMultPaises([...multPaises, multPaises.filter((item)=> item.id !== id)])
+  }
+
+
   const handleSelectChangePais = (event) => {
-    setMultPaises([...multPaises, event.target.value]);
+    setMultPaises([...multPaises, event.target.value, <button onClick={() => cerrar(id)}>❌</button>]);
     const push = activity.Paises.push(event.target.value);
     setActivity({ ...activity, push });
     setErrores(validation({ ...activity, push }));
   }
-  const limpiarPaises = () => {
-    setMultPaises([])
-  }
+
 
   return {
     errores, 
@@ -53,6 +56,6 @@ export default function handlers() {
     handleChangeDificultad, 
     handleChangeTemporada, 
     handleSelectChangePais,
-    limpiarPaises
+    cerrar
   }
 }

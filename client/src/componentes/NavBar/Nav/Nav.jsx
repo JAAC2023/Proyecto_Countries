@@ -32,42 +32,48 @@ export default function Nav({
 
   return (
     <div className={location.pathname === "/activity" ? displayNone : display}>
-      <NavLink to={"/home"}>
-        <button className="home">HOME</button>
+      <div className="contNav">
+        <NavLink to={"/home"}>
+        <button className="home">Inicio</button>
       </NavLink>
 
       <NavLink to={"/activity"}>
-        <button className="">Crear Actividad</button>
+        <button className="home">Crear Actividad</button>
       </NavLink>
 
       <NavLink to={"/activity/list"}>
-        <button className="" onClick={() => searchAvtivities()}>
-          Lista de Actividades
+        <button className="home" onClick={() => searchAvtivities()}>
+         Actividades
         </button>
       </NavLink>
 
       <input
         type="text"
         onChange={handleChange}
-        className=""
+        className="input"
         value={pais.nombre}
+        placeholder="Ingresa el nombre un Pais"
       />
       <NavLink to={"/home/name"}>
-        <button className="" onClick={() => buscarPais(pais)}>
+        <button className="home" onClick={() => buscarPais(pais)}>
           Buscar
         </button>
       </NavLink>
 
       <NavLink to={"/home/name"}>
-        <button className="home">Lista de Busqueda</button>
+        <button className="home">Paises</button>
       </NavLink>
-      <p></p>
-
-      {selects()}
 
       <NavLink to={"/"}>
         <button className="home">Cerrar</button>
       </NavLink>
+
+      </div>
+      
+      <div className="filtros">
+        {selects()}
+      </div>
     </div>
+    
   );
 }

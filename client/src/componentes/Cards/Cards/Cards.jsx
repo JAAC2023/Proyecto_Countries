@@ -5,7 +5,7 @@ import Card from "../../Card/Card";
 import estados from "../../../utils/estadosGlobales";
 
 export default function Cards() {
-  const { todosLosPaises } = estados();// me tarigo del estado global todos los paises
+  const { todosLosPaises } = estados();// Estado global de todos los paises
   const [paginaActual, setPaginaActual] = useState(1);//Estado local que inicializa en 1
   const cardsPorPagina = 10;//constante de Cards que se muestran por pagina.
   const comienzo = (paginaActual - 1) * cardsPorPagina; // constante que calcula el índice de inicio de las tarjetas que se mostrarán en la página actual
@@ -25,46 +25,53 @@ export default function Cards() {
     const paginas = [];
     for (let i = 1; i <= maximoDePaginas; i++) {
       paginas.push(
-        <div className="botonPagina">
           <button
             key={i}
             onClick={() => setPaginaActual(i)}
-            className={i === paginaActual ? "pagina" : "paginas"}
+            className={i === paginaActual ? "B-pagina" : "B-paginas"}
           >
             {i}
           </button>
-        </div>
       );
     }
     return paginas;
   };
 
   return (
-    <div className="cards">
-      {cardsVisibles?.map((pais) => (
-        <Card
-          key={pais?.id}
-          id={pais?.id}
-          Nombre={pais?.Nombre}
-          Bandera={pais?.Bandera}
-          Continente={pais?.Continente}
-          Capital={pais?.Capital}
-          Subregión={pais?.Subregión}
-          Area={pais?.Area}
-          Población={pais?.Población}
-        />
-      ))}
-      <div>
+    
+    <div className="ContainCards" >
+      <div className="Contenedor">
+        <div className="Cards">
+         {cardsVisibles?.map((pais) => (
+          <Card
+            key={pais?.id}
+            id={pais?.id}
+            Nombre={pais?.Nombre}
+            Bandera={pais?.Bandera}
+            Continente={pais?.Continente}
+            Capital={pais?.Capital}
+            Subregión={pais?.Subregión}
+            Area={pais?.Area}
+            Población={pais?.Población}
+          />
+        ))}
+      </div>
+      </div>
+      
+      
+      <div className="contPaginado">
         <button
-          className="anterior"
+          className="botoAanterior"
           onClick={handlePreviousPage}
           disabled={paginaActual === 1}
         >
           ◀
         </button>
-        {renderPagination()}
+
+          {renderPagination()}
+
         <button
-          className="siguiente"
+          className="botoSiguiente"
           onClick={handleNextPage}
           disabled={paginaActual * cardsPorPagina >= todosLosPaises?.length}
         >
